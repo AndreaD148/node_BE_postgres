@@ -25,12 +25,11 @@ app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 
   client.connect();
-  const query = "SELECT * FROM react_user";
+  const query = `SELECT * FROM react_user`;
 
-  client.query(query, (res, err) => {
+  client.query(query, (err, res) => {
     if(err) {
-      console.log(err);
-      return;
+      throw err;
     }
 
     console.table(res.rows)
