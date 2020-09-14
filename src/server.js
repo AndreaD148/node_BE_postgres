@@ -32,8 +32,11 @@ app.listen(PORT, () => {
       console.log(err);
       return;
     }
-    console.log(res);
-  })
+
+    console.table(res.rows)
+
+  }) 
+
 
 })
 
