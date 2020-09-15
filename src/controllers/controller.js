@@ -120,3 +120,46 @@ exports.deleteUser = (req, response) => {
   })
 
 }
+
+
+//update method
+exports.updateUserById = (req, response) => {
+  
+  /*
+    PARAMS IN THE REQUEST:
+    - id            -> user's id
+    - newUsername   -> to update the user's name
+    - newAge        -> to update the user's age
+  */
+  const id = req.body.id;
+
+  console.log(id);
+
+  //it takes also newName, newSurname and newAge
+  const newUsername = req.body.username;
+  const newSurname = req.body.surname;
+  const newAge = req.body.age;
+
+  console.log(`${newUsername}, ${newSurname}, ${newAge}`)
+
+  console.log(typeof(newUsername))
+
+  const query = `UPDATE react_user SET username='${newUsername}', surname='${newSurname}', age=${newAge} WHERE id=${id}`;
+
+
+  db.query(query, (err, res) => {
+
+    if(err) {
+      console.log(err);
+      throw err;
+    }
+    
+    console.table(res.rows)
+    
+    response.send({
+      "user_udated": res.rows,
+    })
+    
+  })
+  
+}

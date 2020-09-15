@@ -1,5 +1,6 @@
 const express = require("express");
 const helmet = require("helmet");
+const cors = require("cors");
 
 require("dotenv").config();
 
@@ -15,6 +16,12 @@ app.use(
     extended: true
   })
 )
+
+otions = {
+  origin: "http://localhost:3000"
+}
+
+app.use(cors(otions))
 
 
 app.use('/', router);
